@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public float jumpForce = 10f;
     public float speed = 8f;
-
-    public bool isOnGround = true;
+    private int jumpCount = 0;
+    public int maxJump = 2;
 
     [Header("Key Setting")]
     public KeyCode leftKey;
@@ -36,6 +36,20 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(jumpKey) && jumpCount < maxJump)
+        {
+            playerRb.velocity = new Vector3(playerRb.velocity.x, 0, playerRb.velocity.z);
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpCount++;
+        }
+
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        transform.position = pos;
+    }
+
+    void FixedUpdate()
+    {
         Vector3 move = Vector3.zero;
 
         if (Input.GetKey(leftKey))
@@ -50,24 +64,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(backwardKey))
             move += Vector3.back;
 
-        transform.Translate(move * speed * Time.deltaTime);
-
-        if (Input.GetKeyDown(jumpKey) && isOnGround)
-        {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isOnGround = false;
-        }
-
-        Vector3 pos = transform.position;
-        pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        transform.position = pos;
+        playerRb.MovePosition(playerRb.position + move * speed * Time.fixedDeltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isOnGround = true;
+            jumpCount = 0;
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
