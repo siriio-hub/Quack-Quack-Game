@@ -26,11 +26,11 @@ public class ItemPickup : MonoBehaviour
                     break;
 
                 case ItemType.Coin:
-                    GameManager.instance.AddScore(1);
+                    GameManager.instance.AddScore(1, player.playerID);
                     break;
 
                 case ItemType.GoldenEgg:
-                    GameManager.instance.AddScore(5);
+                    GameManager.instance.AddScore(5, player.playerID);
                     break;
 
                 case ItemType.SpeedBoost:
@@ -42,6 +42,7 @@ public class ItemPickup : MonoBehaviour
                     break;
             }
 
+            // Item หายเฉพาะตอนเก็บ
             Destroy(gameObject);
         }
     }

@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public int health = 3;
 
-    public string inputID;
+    public int playerID;
 
     private int jumpCount = 0;
     public int maxJump = 2;
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveX = Input.GetAxis("Horizontal" + inputID);
+        float moveX = Input.GetAxis("Horizontal" + playerID);
 
         Vector3 velocity = new Vector3(
             moveX * sideSpeed,
