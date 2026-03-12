@@ -1,56 +1,30 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public GameObject startSegment;
-    public GameObject finishSegment;
-    public GameObject[] roadSegments;
+    public GameObject[] segment;
 
-    public Transform player;
-
-    public float segmentLength = 30f;
-    public int segmentsBeforeFinish = 10;
-
-    private float spawnZ = 0;
-    private int segmentsSpawned = 0;
-
-    void Start()
-    {
-        SpawnSegment(startSegment);
-
-        for (int i = 0; i < 3; i++)
-        {
-            SpawnRandomSegment();
-        }
-    }
+    [SerializeField] int zPos = 30;
+    [SerializeField] bool creatingSegment = false;
+    [SerializeField] int segmentNum;
 
     void Update()
     {
-        if (player.position.z + 60 > spawnZ)
+        if (creatingSegment == false)
         {
-            if (segmentsSpawned >= segmentsBeforeFinish)
-            {
-                SpawnSegment(finishSegment);
-                enabled = false;
-            }
-            else
-            {
-                SpawnRandomSegment();
-            }
+            creatingSegment = true; 
+            StartCoroutine(SegmentGen());
         }
     }
 
-    void SpawnRandomSegment()
+    IEnumerator SegmentGen()
     {
-        int id = Random.Range(0, roadSegments.Length);
-        SpawnSegment(roadSegments[id]);
-        segmentsSpawned++;
-    }
-
-    void SpawnSegment(GameObject segment)
-    {
-        Instantiate(segment, Vector3.forward * spawnZ, Quaternion.identity);
-        spawnZ += segmentLength;
+        int segmentNum = Random.Range(0, segment.Length);
+        Instantiate(segment[segmentNum], new Vector3(0, 0, zPos), Quaternion.identity);
+        zPos += 50;
+        yield return new WaitForSeconds(3);
+        creatingSegment = false;
     }
 }
