@@ -8,6 +8,11 @@ public class PlayerController : MonoBehaviour
     public float forwardSpeed = 8f;
     public float sideSpeed = 10f;
     public float jumpForce = 10f;
+    public bool isShieldActive = false;
+
+    float normalSpeed;
+
+    public int health = 3;
 
     public string inputID;
 
@@ -20,11 +25,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        normalSpeed = forwardSpeed;
     }
 
     void Update()
     {
-        // ¡ÃÐâ´´
         if (Input.GetKeyDown(jumpKey) && jumpCount < maxJump)
         {
             playerRb.linearVelocity = new Vector3(
@@ -57,5 +62,48 @@ public class PlayerController : MonoBehaviour
         {
             jumpCount = 0;
         }
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            if (!isShieldActive)
+            {
+                health--;
+                Debug.Log("Hit! Health: " + health);
+            }
+            else
+            {
+                Debug.Log("Shield Blocked Damage!");
+            }
+        }
+    }
+
+    public void SpeedBoost()
+    {
+        forwardSpeed += 5f;
+        Debug.Log("Speed Boost!");
+        Invoke("ResetSpeed", 5f);
+    }
+
+    void ResetSpeed()
+    {
+        forwardSpeed = normalSpeed;
+    }
+
+    public void AddHealth(int amount)
+    {
+        health += amount;
+        Debug.Log("Health: " + health);
+    }
+    public void ActivateShield()
+    {
+        isShieldActive = true;
+        Debug.Log("Shield Activated!");
+        Invoke("DeactivateShield", 10f);
+    }
+
+    void DeactivateShield()
+    {
+        isShieldActive = false;
+        Debug.Log("Shield Ended");
     }
 }
