@@ -17,10 +17,6 @@ public class PlayerController : MonoBehaviour
     [Header("Key Setting")]
     public KeyCode jumpKey;
 
-    [Header("Movement Limit")]
-    public float minX = -10f;
-    public float maxX = 10f;
-
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
@@ -53,11 +49,6 @@ public class PlayerController : MonoBehaviour
         );
 
         playerRb.linearVelocity = velocity;
-
-        // จำกัดขอบซ้ายขวา
-        Vector3 pos = transform.position;
-        pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        transform.position = pos;
     }
 
     private void OnCollisionEnter(Collision collision)
