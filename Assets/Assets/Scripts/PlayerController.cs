@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private int jumpCount = 0;
     public int maxJump = 2;
 
+    private string horizontalAxis;
+
     [Header("Key Setting")]
     public KeyCode jumpKey;
 
@@ -28,11 +30,13 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         normalSpeed = forwardSpeed;
+
+        horizontalAxis = "Horizontal" + playerID;
     }
 
     void Update()
     {
-        float moveX = Input.GetAxis("Horizontal");
+        float moveX = Input.GetAxis(horizontalAxis);
         float speed = Mathf.Abs(moveX) + Mathf.Abs(forwardSpeed);
         animator.SetFloat("Speed", speed);
 
@@ -54,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveX = Input.GetAxis("Horizontal");
+        float moveX = Input.GetAxis(horizontalAxis);
 
         Vector3 velocity = new Vector3(
            moveX * sideSpeed,

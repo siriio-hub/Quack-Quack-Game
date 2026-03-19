@@ -5,7 +5,7 @@ using UnityEngine;
 public class EndlessRoad : MonoBehaviour
 {
     public GameObject[] segmentPrefabs;
-    public Transform player;
+    public Transform[] players;
 
     public int segmentsOnScreen = 5;
     public float segmentLength = 30f;
@@ -23,10 +23,29 @@ public class EndlessRoad : MonoBehaviour
 
     void Update()
     {
-        if (player.position.z - 50 > spawnZ - (segmentsOnScreen * segmentLength))
+        float backPlayerZ = GetBackPlayerZ();
+
+        float safeZone = spawnZ - (segmentsOnScreen * segmentLength);
+
+        if (backPlayerZ > safeZone + 50f)
         {
             RecycleSegment();
         }
+    }
+
+    float GetBackPlayerZ()
+    {
+        float minZ = players[0].position.z;
+
+        for (int i = 1; i < players.Length; i++)
+        {
+            if (players[i].position.z < minZ)
+            {
+                minZ = players[i].position.z;
+            }
+        }
+
+        return minZ;
     }
 
     void SpawnSegment()
@@ -39,8 +58,13 @@ public class EndlessRoad : MonoBehaviour
             Quaternion.identity
         );
 
-        activeSegments.Add(segment);
+        ObstacleSpawner spawner = segment.GetComponent<ObstacleSpawner>();
+        if (spawner != null)
+        {
+            spawner.SpawnObstacles();
+        }
 
+        activeSegments.Add(segment);
         spawnZ += segmentLength;
     }
 
@@ -49,9 +73,13 @@ public class EndlessRoad : MonoBehaviour
         GameObject oldSegment = activeSegments[0];
         activeSegments.RemoveAt(0);
 
-        int index = Random.Range(0, segmentPrefabs.Length);
-
         oldSegment.transform.position = new Vector3(0, 0, spawnZ);
+
+        ObstacleSpawner spawner = oldSegment.GetComponent<ObstacleSpawner>();
+        if (spawner != null)
+        {
+            spawner.SpawnObstacles();
+        }
 
         spawnZ += segmentLength;
 
