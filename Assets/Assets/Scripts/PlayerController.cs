@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
+    private Animator animator;
 
     public float forwardSpeed = 8f;
     public float sideSpeed = 10f;
@@ -25,35 +26,43 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         normalSpeed = forwardSpeed;
     }
 
     void Update()
     {
+        float moveX = Input.GetAxis("Horizontal");
+        float speed = Mathf.Abs(moveX) + Mathf.Abs(forwardSpeed);
+        animator.SetFloat("Speed", speed);
+
         if (Input.GetKeyDown(jumpKey) && jumpCount < maxJump)
         {
-            playerRb.linearVelocity = new Vector3(
-                playerRb.linearVelocity.x,
+            playerRb.velocity = new Vector3(
+                playerRb.velocity.x,
                 0,
-                playerRb.linearVelocity.z
+                playerRb.velocity.z
             );
 
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpCount++;
+
+            animator.ResetTrigger("Jump");
+            animator.SetTrigger("Jump");
         }
     }
 
     void FixedUpdate()
     {
-        float moveX = Input.GetAxis("Horizontal" + playerID);
+        float moveX = Input.GetAxis("Horizontal");
 
         Vector3 velocity = new Vector3(
-            moveX * sideSpeed,
-            playerRb.linearVelocity.y,
-            forwardSpeed
-        );
+           moveX * sideSpeed,
+           playerRb.velocity.y,
+           forwardSpeed
+       );
 
-        playerRb.linearVelocity = velocity;
+        playerRb.velocity = velocity;
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -4,14 +4,22 @@ public class RandomItemSpawner : MonoBehaviour
 {
     public GameObject[] items;
 
-    public int spawnCount = 3;     // จำนวนไอเทมที่จะสุ่ม
-    public float xRange = 4f;      // กว้างของแมพ
-    public float zRange = 20f;     // ยาวของแมพ
-    public float yPos = 1f;        // ความสูง
+    public Transform player;
 
-    void Start()
+    public int spawnCount = 3;
+    public float xRange = 4f;
+    public float zRange = 20f;
+    public float yPos = 1f;
+
+    float lastSpawnZ = 0f;
+
+    void Update()
     {
-        SpawnItems();
+        if (player.position.z > lastSpawnZ - zRange)
+        {
+            SpawnItems();
+            lastSpawnZ += zRange;
+        }
     }
 
     void SpawnItems()
@@ -21,11 +29,11 @@ public class RandomItemSpawner : MonoBehaviour
             float randX = Random.Range(-xRange, xRange);
             float randZ = Random.Range(0, zRange);
 
-            Vector3 spawnPos = new Vector3(randX, yPos, transform.position.z + randZ);
+            Vector3 spawnPos = new Vector3(randX, yPos, lastSpawnZ + randZ);
 
             int randItem = Random.Range(0, items.Length);
 
-            Instantiate(items[randItem], spawnPos, Quaternion.identity, transform);
+            Instantiate(items[randItem], spawnPos, Quaternion.identity);
         }
     }
 }
