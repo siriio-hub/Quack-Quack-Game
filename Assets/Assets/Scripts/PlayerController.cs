@@ -95,18 +95,18 @@ public class PlayerController : MonoBehaviour
             jumpCount = 0;
         }
 
-        //if (collision.gameObject.CompareTag("Obstacle"))
-        //{
-        //    if (!isShieldActive)
-        //    {
-        //        health--;
-        //        Debug.Log("Hit! Health: " + health);
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("Shield Blocked Damage!");
-        //    }
-        //}
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            if (!isShieldActive)
+            {
+                health--;
+                Debug.Log("Hit! Health: " + health);
+            }
+            else
+            {
+                Debug.Log("Shield Blocked Damage!");
+            }
+        }
     }
     void OnTriggerEnter(Collider other)
     {

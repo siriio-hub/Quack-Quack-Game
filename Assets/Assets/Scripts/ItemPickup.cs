@@ -12,7 +12,7 @@ public class ItemPickup : MonoBehaviour
     }
 
     public ItemType itemType;
-    public GameObject pickupVFX; // VFX prefab
+    public GameObject pickupVFX;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,15 +20,23 @@ public class ItemPickup : MonoBehaviour
         {
             PlayerController player = other.GetComponent<PlayerController>();
 
+            if (player == null) return;
+
+            if (GameManager.instance == null)
+            {
+                Debug.LogWarning("ลืมวาง GameManager ไว้ในฉากหรือเปล่า?");
+                return;
+            }
+
+            if (pickupVFX != null)
+            {
+                Instantiate(pickupVFX, transform.position, Quaternion.identity);
+            }
+
             switch (itemType)
             {
                 case ItemType.Heart:
                     GameManager.instance.AddHealth(1, player.playerID);
-
-                    if (pickupVFX != null)
-                    {
-                        Instantiate(pickupVFX, transform.position, Quaternion.identity);
-                    }
                     break;
 
                 case ItemType.Coin:

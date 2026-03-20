@@ -390,7 +390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 930724442334678909}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1277,6 +1277,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 930724442334678909}
     m_Modifications:
+    - target: {fileID: 3406607328710952458, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478495386299156335, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4522508231157825857, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.52
@@ -1317,9 +1325,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4639006195051984241, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5006882709444073198, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
       propertyPath: m_Name
       value: FenceTall 2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006882709444073198, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5993960168098029352, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
       propertyPath: m_IsTrigger
@@ -1635,6 +1651,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockTall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4430418757949406359, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6132115182275079546, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -1679,6 +1699,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9161113152022747254, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1700,6 +1724,10 @@ PrefabInstance:
     - target: {fileID: 4430418757949406359, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
       propertyPath: m_Name
       value: RockTall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430418757949406359, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6132115182275079546, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
       propertyPath: m_IsTrigger
@@ -1744,6 +1772,10 @@ PrefabInstance:
     - target: {fileID: 7405801772002013765, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161113152022747254, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2617,6 +2649,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FenceTall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2579974370367405001, guid: 8aa047332587f434f9d997641fe9af0e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6161967358967716872, guid: 8aa047332587f434f9d997641fe9af0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.66
@@ -2656,6 +2692,10 @@ PrefabInstance:
     - target: {fileID: 6161967358967716872, guid: 8aa047332587f434f9d997641fe9af0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980518210334452203, guid: 8aa047332587f434f9d997641fe9af0e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2941,13 +2981,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3398334166395098743, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3461186190454637477, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4597022197968813518, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6593149130839210953, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7240948147681498707, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
       propertyPath: m_Name
       value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240948147681498707, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3567,6 +3623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockTall (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4430418757949406359, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6132115182275079546, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -3610,6 +3670,10 @@ PrefabInstance:
     - target: {fileID: 7405801772002013765, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161113152022747254, guid: 62e9e71f03b58884291869525df1b72c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3887,13 +3951,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3398334166395098743, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3461186190454637477, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4597022197968813518, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6593149130839210953, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7240948147681498707, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
       propertyPath: m_Name
       value: Rock (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240948147681498707, guid: 843343a5993f7cb44a4a0c9356b4a0a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3987,6 +4067,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 930724442334678909}
     m_Modifications:
+    - target: {fileID: 3406607328710952458, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478495386299156335, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4522508231157825857, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.47
@@ -4027,9 +4115,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4639006195051984241, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5006882709444073198, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
       propertyPath: m_Name
       value: FenceTall 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006882709444073198, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5993960168098029352, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
       propertyPath: m_IsTrigger
@@ -4209,6 +4305,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 930724442334678909}
     m_Modifications:
+    - target: {fileID: 3406607328710952458, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478495386299156335, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4522508231157825857, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.47
@@ -4249,9 +4353,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4639006195051984241, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5006882709444073198, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
       propertyPath: m_Name
       value: FenceTall 2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006882709444073198, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5993960168098029352, guid: 15c3bc708111132409062fcde440c6d6, type: 3}
       propertyPath: m_IsTrigger

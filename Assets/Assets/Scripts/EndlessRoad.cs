@@ -5,7 +5,6 @@ using UnityEngine;
 public class EndlessRoad : MonoBehaviour
 {
     public GameObject[] segmentPrefabs;
-    public GameObject[] obstaclePrefabs;
     public GameObject[] items;
     public Transform[] players;
 
@@ -26,7 +25,6 @@ public class EndlessRoad : MonoBehaviour
     void Update()
     {
         float backPlayerZ = GetBackPlayerZ();
-
         float safeZone = spawnZ - (segmentsOnScreen * segmentLength);
 
         if (backPlayerZ > safeZone + 50f)
@@ -60,7 +58,7 @@ public class EndlessRoad : MonoBehaviour
             Quaternion.identity
         );
 
-        Obstacles(segment);
+        SpawnItems(segment);
 
         activeSegments.Add(segment);
         spawnZ += segmentLength;
@@ -73,53 +71,62 @@ public class EndlessRoad : MonoBehaviour
 
         oldSegment.transform.position = new Vector3(0, 0, spawnZ);
 
-        Obstacles(oldSegment);
+        ClearOldItems(oldSegment);
+        SpawnItems(oldSegment);
 
         spawnZ += segmentLength;
         activeSegments.Add(oldSegment);
     }
-    void Obstacles(GameObject segment)
+    void ClearOldItems(GameObject segment)
     {
-        Vector3[] obstaclePositions = new Vector3[]
-        {
-            new Vector3(-2f, 0.5f, 5f),
-            new Vector3(0f, 0.5f, 10f),
-            new Vector3(2f, 0.5f, 15f)
-        };
-
         foreach (Transform child in segment.transform)
         {
-            if (child.CompareTag("Obstacle"))
+            if (child.CompareTag("Item"))
+            {
                 Destroy(child.gameObject);
+            }
         }
-
-        for (int i = 0; i < obstaclePrefabs.Length && i < obstaclePositions.Length; i++)
-        {
-            Instantiate(obstaclePrefabs[i], segment.transform.position + obstaclePositions[i], Quaternion.identity, segment.transform);
-        }
-
-        SpawnItems(segment);
     }
+
     void SpawnItems(GameObject segment)
     {
+        if (items.Length == 0) return;
+
+        int obstacleLayerMask = LayerMask.GetMask("Obstacle");
+
         float xRange = 4f;
-        float zStart = 5f;
-        float zEnd = 25f; 
+        float zStart = -12f; 
+        float zEnd = 12f;  
         float yPos = 1f;
 
-        int spawnCount = 3; 
+        int spawnCount = 3;
+        int maxAttempts = 5; 
 
         for (int i = 0; i < spawnCount; i++)
         {
-            float randX = Random.Range(-xRange, xRange);
-            float randZ = Random.Range(zStart, zEnd);
+            Vector3 spawnPos = Vector3.zero;
+            bool isPosFound = false;
 
-            Vector3 spawnPos = segment.transform.position + new Vector3(randX, yPos, randZ);
+            for (int attempt = 0; attempt < maxAttempts; attempt++)
+            {
+                float randX = Random.Range(-xRange, xRange);
+                float randZ = Random.Range(zStart, zEnd);
 
-            int randItem = Random.Range(0, obstaclePrefabs.Length);
-            GameObject itemPrefab = items[randItem];
+                spawnPos = segment.transform.position + new Vector3(randX, yPos, randZ);
 
-            Instantiate(itemPrefab, spawnPos, Quaternion.identity, segment.transform);
+                if (!Physics.CheckSphere(spawnPos, 0.5f, obstacleLayerMask))
+                {
+                    isPosFound = true;
+                    break;
+                }
+            }
+
+            if (isPosFound)
+            {
+                int randItemIndex = Random.Range(0, items.Length);
+                GameObject itemPrefab = items[randItemIndex];
+                Instantiate(itemPrefab, spawnPos, Quaternion.identity, segment.transform);
+            }
         }
     }
 }
