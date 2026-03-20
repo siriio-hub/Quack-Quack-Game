@@ -12,6 +12,7 @@ public class ItemPickup : MonoBehaviour
     }
 
     public ItemType itemType;
+    public GameObject pickupVFX; // VFX prefab
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +23,12 @@ public class ItemPickup : MonoBehaviour
             switch (itemType)
             {
                 case ItemType.Heart:
-                    player.AddHealth(1);
+                    GameManager.instance.AddHealth(1, player.playerID);
+
+                    if (pickupVFX != null)
+                    {
+                        Instantiate(pickupVFX, transform.position, Quaternion.identity);
+                    }
                     break;
 
                 case ItemType.Coin:
@@ -42,7 +48,6 @@ public class ItemPickup : MonoBehaviour
                     break;
             }
 
-            // Item หายเฉพาะตอนเก็บ
             Destroy(gameObject);
         }
     }

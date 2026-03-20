@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Key Setting")]
     public KeyCode jumpKey;
-
+    [Space]
     private float normalSpeed;
     public float forwardSpeed = 8f;
     public float sideSpeed = 10f;
@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
         horizontalAxis = "Horizontal" + playerID;
 
         normalSpeed = forwardSpeed;
+
     }
 
     void Update()
@@ -137,7 +138,8 @@ public class PlayerController : MonoBehaviour
     {
         if (isShieldActive) return;
 
-        health--;
+        GameManager.instance.TakeDamage(1, playerID); 
+        health = GameManager.instance.GetCurrentHealth(playerID);
         Debug.Log("Health: " + health);
 
         if (health <= 0)
@@ -159,7 +161,8 @@ public class PlayerController : MonoBehaviour
 
     public void AddHealth(int amount)
     {
-        health = Mathf.Min(health + amount, maxHealth);
+        GameManager.instance.AddHealth(amount, playerID);
+        health = GameManager.instance.GetCurrentHealth(playerID);
         Debug.Log("Health: " + health);
     }
 
