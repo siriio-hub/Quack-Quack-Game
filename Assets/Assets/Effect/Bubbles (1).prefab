@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 133657721985628594}
+  - component: {fileID: -709534089205441664}
   m_Layer: 0
   m_Name: Bubbles (1)
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   - {fileID: 2734893407059239535}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-709534089205441664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951498357613789179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252b9595de94db94483b62b222f887ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bubble
 --- !u!1 &5605018116456919562
 GameObject:
   m_ObjectHideFlags: 0

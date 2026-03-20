@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
     [Header("Key Setting")]
     public KeyCode jumpKey;
 
-    [Space]
-
     private float normalSpeed;
     public float forwardSpeed = 8f;
     public float sideSpeed = 10f;
@@ -24,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public int health = 3;
     public int maxHealth = 3;
 
+    [Header("Shield Effect")]
     public bool isShieldActive = false;
     public GameObject shieldEffect;
 
@@ -31,6 +30,12 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem dustVFX;
     public ParticleSystem lightningVFX;
     public ParticleSystem speedLinesVFX;
+
+    [Header("Attack Settings")]
+    public GameObject tornadoPrefab;
+
+    public GameObject bubblePrefab;
+    public bool isBubbleTrapped = false;
 
     private bool isKnockback = false;
     private float hitCooldown = 0.5f;
@@ -48,7 +53,6 @@ public class PlayerController : MonoBehaviour
         normalSpeed = forwardSpeed;
 
         if (shieldEffect != null) shieldEffect.SetActive(false);
-
     }
 
     void Update()
@@ -81,13 +85,15 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isDead || isKnockback)
+        if (isDead || isKnockback || isBubbleTrapped)
         {
             playerRb.linearVelocity = new Vector3(0, playerRb.linearVelocity.y, 0);
             return;
         }
 
         float moveX = Input.GetAxis(horizontalAxis);
+        float currentForward = isBubbleTrapped ? forwardSpeed * 0.5f : forwardSpeed;
+        float currentSide = isBubbleTrapped ? 0 : moveX * sideSpeed;
 
         Vector3 velocity = new Vector3(
            moveX * sideSpeed,
@@ -128,11 +134,16 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
 
-            if (isShieldActive)
+            if (isShieldActive || forwardSpeed > normalSpeed)
             {
                 Debug.Log("Shield Active! Destroying obstacle.");
                 Destroy(other.gameObject);
                 return;
+            }
+
+            if (other.CompareTag("Player"))
+            {
+                other.GetComponent<PlayerController>().SpeedBoost(); // หรือสร้างฟังก์ชัน Stun แยกต่างหาก
             }
 
             if (Time.time > lastHitTime + hitCooldown)
@@ -158,7 +169,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
         if (isShieldActive) return;
 
@@ -229,7 +240,41 @@ public class PlayerController : MonoBehaviour
         );
     }
 
-    void Die()
+    public void LaunchTornado()
+    {
+        Debug.Log("Player " + playerID + "Tornado");
+
+        PlayerController[] allPlayers = FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
+        foreach (PlayerController target in allPlayers)
+        {
+            if (target.playerID != this.playerID)
+            {
+                Vector3 spawnPos = new Vector3(target.transform.position.x, 0.5f, target.transform.position.z + 2f);
+                if (tornadoPrefab != null)
+                {
+                    Instantiate(tornadoPrefab, spawnPos, Quaternion.identity);
+                    Debug.Log("Tornado Spawned at: " + spawnPos);
+                }
+                break;
+            }
+        }
+    }
+    public void LaunchBubble()
+    {
+        Debug.Log("Player " + playerID + "Bubble!");
+
+        PlayerController[] allPlayers = FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
+        foreach (PlayerController target in allPlayers)
+        {
+            if (target.playerID != this.playerID)
+            {
+                Instantiate(bubblePrefab, target.transform.position, Quaternion.identity, target.transform);
+                break;
+            }
+        }
+    }
+
+        void Die()
     {
         isDead = true;
 

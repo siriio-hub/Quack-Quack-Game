@@ -116,8 +116,14 @@ public class EndlessRoad : MonoBehaviour
                 for (int attempt = 0; attempt < maxAttempts; attempt++)
                 {
                     float randX;
+                    if (side == 0)
+                    {
                         randX = Random.Range(-maxX, -minX);
+                    }
+                    else
+                    {
                         randX = Random.Range(minX, maxX);
+                    }
 
                     float randZ = Random.Range(zStart, zEnd);
                     spawnPos = segment.transform.position + new Vector3(randX, yPos, randZ);

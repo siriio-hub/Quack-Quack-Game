@@ -19,7 +19,6 @@ public class ItemPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerController player = other.GetComponent<PlayerController>();
-
             if (player == null) return;
 
             if (GameManager.instance == null)
@@ -30,7 +29,8 @@ public class ItemPickup : MonoBehaviour
 
             if (pickupVFX != null)
             {
-                Instantiate(pickupVFX, transform.position, Quaternion.identity);
+                GameObject vfx = Instantiate(pickupVFX, transform.position, Quaternion.identity);
+                Destroy(vfx, 2f);
             }
 
             switch (itemType)
@@ -45,6 +45,9 @@ public class ItemPickup : MonoBehaviour
 
                 case ItemType.GoldenEgg:
                     GameManager.instance.AddScore(5, player.playerID);
+                    int randomAttack = Random.Range(0, 2);
+                    if (randomAttack == 0) player.LaunchTornado();
+                    else player.LaunchBubble();
                     break;
 
                 case ItemType.SpeedBoost:

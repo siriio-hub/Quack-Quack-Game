@@ -8067,6 +8067,9 @@ MonoBehaviour:
   dustVFX: {fileID: 631184742}
   lightningVFX: {fileID: 1152272276}
   speedLinesVFX: {fileID: 683638803}
+  tornadoPrefab: {fileID: 5133956648942267690, guid: e8b6016c722a7044b8af6f67d01499d5, type: 3}
+  bubblePrefab: {fileID: 3951498357613789179, guid: 21596dc86d1075347a23e702d241dcf3, type: 3}
+  isBubbleTrapped: 0
 --- !u!136 &535648907
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8086,10 +8089,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.2275127
+  m_Radius: 1.3677871
   m_Height: 3.963225
   m_Direction: 1
-  m_Center: {x: 0.044894814, y: 2.1395075, z: 0.58264613}
+  m_Center: {x: 0.044894814, y: 2.1395075, z: 0.7229205}
 --- !u!54 &535648908
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27233,6 +27236,9 @@ MonoBehaviour:
   dustVFX: {fileID: 1356997772}
   lightningVFX: {fileID: 13948485}
   speedLinesVFX: {fileID: 1663676959}
+  tornadoPrefab: {fileID: 5133956648942267690, guid: e8b6016c722a7044b8af6f67d01499d5, type: 3}
+  bubblePrefab: {fileID: 3951498357613789179, guid: 21596dc86d1075347a23e702d241dcf3, type: 3}
+  isBubbleTrapped: 0
 --- !u!136 &1861436137
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27252,10 +27258,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.2275127
+  m_Radius: 1.4670296
   m_Height: 4.0228252
   m_Direction: 1
-  m_Center: {x: 0.044894814, y: 2.109707, z: 0.58264613}
+  m_Center: {x: 0.044894814, y: 2.109707, z: 0.822163}
 --- !u!54 &1861436138
 Rigidbody:
   m_ObjectHideFlags: 0
