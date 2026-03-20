@@ -94,38 +94,47 @@ public class EndlessRoad : MonoBehaviour
 
         int obstacleLayerMask = LayerMask.GetMask("Obstacle");
 
-        float xRange = 4f;
-        float zStart = -12f; 
-        float zEnd = 12f;  
+        float minX = 1.2f; 
+        float maxX = 4.0f;
+
+        float zStart = -12f;
+        float zEnd = 12f;
         float yPos = 1f;
 
-        int spawnCount = 3;
-        int maxAttempts = 5; 
+        int itemsPerSide = 2;
+        int maxAttempts = 5;
 
-        for (int i = 0; i < spawnCount; i++)
+        float checkRadius = 1.5f;
+
+        for (int side = 0; side < 2; side++) 
         {
-            Vector3 spawnPos = Vector3.zero;
-            bool isPosFound = false;
-
-            for (int attempt = 0; attempt < maxAttempts; attempt++)
+            for (int i = 0; i < itemsPerSide; i++)
             {
-                float randX = Random.Range(-xRange, xRange);
-                float randZ = Random.Range(zStart, zEnd);
+                Vector3 spawnPos = Vector3.zero;
+                bool isPosFound = false;
 
-                spawnPos = segment.transform.position + new Vector3(randX, yPos, randZ);
-
-                if (!Physics.CheckSphere(spawnPos, 0.5f, obstacleLayerMask))
+                for (int attempt = 0; attempt < maxAttempts; attempt++)
                 {
-                    isPosFound = true;
-                    break;
-                }
-            }
+                    float randX;
+                        randX = Random.Range(-maxX, -minX);
+                        randX = Random.Range(minX, maxX);
 
-            if (isPosFound)
-            {
-                int randItemIndex = Random.Range(0, items.Length);
-                GameObject itemPrefab = items[randItemIndex];
-                Instantiate(itemPrefab, spawnPos, itemPrefab.transform.rotation, segment.transform);
+                    float randZ = Random.Range(zStart, zEnd);
+                    spawnPos = segment.transform.position + new Vector3(randX, yPos, randZ);
+
+                    if (!Physics.CheckSphere(spawnPos, checkRadius, obstacleLayerMask))
+                    {
+                        isPosFound = true;
+                        break;
+                    }
+                }
+
+                if (isPosFound)
+                {
+                    int randItemIndex = Random.Range(0, items.Length);
+                    GameObject itemPrefab = items[randItemIndex];
+                    Instantiate(itemPrefab, spawnPos, itemPrefab.transform.rotation, segment.transform);
+                }
             }
         }
     }

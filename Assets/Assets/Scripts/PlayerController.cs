@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 3;
 
     public bool isShieldActive = false;
+    public GameObject shieldEffect;
 
     private bool isKnockback = false;
     private float hitCooldown = 0.5f;
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour
         horizontalAxis = "Horizontal" + playerID;
 
         normalSpeed = forwardSpeed;
+
+        if (shieldEffect != null) shieldEffect.SetActive(false);
 
     }
 
@@ -110,22 +113,30 @@ public class PlayerController : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Obstacle") && Time.time > lastHitTime + hitCooldown)
+        if (other.CompareTag("Obstacle"))
         {
-            lastHitTime = Time.time;
 
-            TakeDamage();
+            if (isShieldActive)
+            {
+                Debug.Log("Shield Active! Destroying obstacle.");
+                Destroy(other.gameObject);
+                return;
+            }
 
-            isKnockback = true;
+            if (Time.time > lastHitTime + hitCooldown)
+            {
+                lastHitTime = Time.time;
+                TakeDamage();
+                isKnockback = true;
 
-            playerRb.linearVelocity = new Vector3(0, playerRb.linearVelocity.y, 0);
-            
-            transform.position += Vector3.back * 2f;
+                playerRb.linearVelocity = new Vector3(0, playerRb.linearVelocity.y, 0);
 
-            Vector3 knockback = new Vector3(0, 2f, -4f);
-            playerRb.AddForce(knockback, ForceMode.Impulse);
+                Vector3 knockbackForce = new Vector3(0, 2f, -4f);
+                playerRb.AddForce(knockbackForce, ForceMode.Impulse);
 
-            Invoke("EndKnockback", 0.7f);
+                CancelInvoke("EndKnockback");
+                Invoke("EndKnockback", 0.7f);
+            }
         }
 
         if (other.CompareTag("Heart"))
@@ -134,6 +145,7 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
     void TakeDamage()
     {
         if (isShieldActive) return;
@@ -147,9 +159,9 @@ public class PlayerController : MonoBehaviour
             Die();
         }
     }
-
     public void SpeedBoost()
     {
+        CancelInvoke("ResetSpeed");
         forwardSpeed = normalSpeed + 5f;
         Invoke("ResetSpeed", 5f);
     }
@@ -168,15 +180,19 @@ public class PlayerController : MonoBehaviour
 
     public void ActivateShield()
     {
-        isShieldActive = true;
-        Debug.Log("Shield Activated!");
-        Invoke("DeactivateShield", 10f);
+        StopCoroutine("ShieldRoutine");
+        StartCoroutine(ShieldRoutine(5f));
     }
 
-    void DeactivateShield()
+    IEnumerator ShieldRoutine(float duration)
     {
+        isShieldActive = true;
+        if (shieldEffect != null) shieldEffect.SetActive(true);
+
+        yield return new WaitForSeconds(duration);
+
         isShieldActive = false;
-        Debug.Log("Shield Ended");
+        if (shieldEffect != null) shieldEffect.SetActive(false);
     }
 
     void EndKnockback()
@@ -199,6 +215,6 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Speed", 0);
         animator.SetTrigger("Die");
 
-        Invoke("GameOver", 2f);
+        //Invoke("GameOver", 2f);
     }
 }

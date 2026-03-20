@@ -26513,7 +26513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerID: 2
-  jumpKey: 305
+  jumpKey: 271
   forwardSpeed: 8
   sideSpeed: 10
   jumpForce: 5
