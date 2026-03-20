@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6950301886651857330}
   - component: {fileID: 2364828126189327126}
   m_Layer: 0
-  m_Name: ExplosionStar (1)
+  m_Name: ExplosionStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.1, y: 5.1, z: 3.7}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1692554562277953074}
@@ -4955,7 +4955,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.76e-43, y: 7.89e-43, z: 0, w: -2.6143948e-23}
+  m_BoundingSphereOverride: {x: 3.9976e-41, y: 0, z: 0, w: 2.1e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -19733,7 +19733,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 5.242033e-39, z: 7.76e-43, w: 2.73e-43}
+  m_BoundingSphereOverride: {x: NaN, y: NaN, z: 4.591e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0

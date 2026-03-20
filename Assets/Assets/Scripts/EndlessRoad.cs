@@ -125,7 +125,7 @@ public class EndlessRoad : MonoBehaviour
             {
                 int randItemIndex = Random.Range(0, items.Length);
                 GameObject itemPrefab = items[randItemIndex];
-                Instantiate(itemPrefab, spawnPos, Quaternion.identity, segment.transform);
+                Instantiate(itemPrefab, spawnPos, itemPrefab.transform.rotation, segment.transform);
             }
         }
     }

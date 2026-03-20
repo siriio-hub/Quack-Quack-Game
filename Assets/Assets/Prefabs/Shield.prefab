@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 3538477917932514639, guid: 18b0f60131530b742a26c0f7c77bfd07, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 190.16322
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538477917932514639, guid: 18b0f60131530b742a26c0f7c77bfd07, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.015163
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: 18b0f60131530b742a26c0f7c77bfd07, type: 3}
@@ -104,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 7.355858, y: 9.04709, z: 1.3364334}
+  m_Center: {x: -0.022906438, y: 5.1444077, z: 0.983339}
 --- !u!114 &7582214083687678795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,3 +127,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemType: 4
+  pickupVFX: {fileID: 2811934726377275755, guid: 8df8a36d82e2bb942be511080fb274ad, type: 3}
