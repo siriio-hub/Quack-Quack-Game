@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Key Setting")]
     public KeyCode jumpKey;
+
     [Space]
+
     private float normalSpeed;
     public float forwardSpeed = 8f;
     public float sideSpeed = 10f;
@@ -24,6 +26,11 @@ public class PlayerController : MonoBehaviour
 
     public bool isShieldActive = false;
     public GameObject shieldEffect;
+
+    [Header("Speed Boost VFX")]
+    public ParticleSystem dustVFX;
+    public ParticleSystem lightningVFX;
+    public ParticleSystem speedLinesVFX;
 
     private bool isKnockback = false;
     private float hitCooldown = 0.5f;
@@ -58,9 +65,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(jumpKey) && jumpCount < maxJump)
         {
-            playerRb.linearVelocity = new Vector3(
-                playerRb.linearVelocity.x,
-                0,
+            if (dustVFX != null) dustVFX.Stop();
+
+            playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0,
                 playerRb.linearVelocity.z
             );
 
@@ -96,6 +103,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             jumpCount = 0;
+
+            if (dustVFX != null && forwardSpeed == normalSpeed)
+            {
+                dustVFX.Play();
+            }
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -163,12 +175,24 @@ public class PlayerController : MonoBehaviour
     {
         CancelInvoke("ResetSpeed");
         forwardSpeed = normalSpeed + 5f;
+
+        if (lightningVFX != null) lightningVFX.Play();
+        if (speedLinesVFX != null) speedLinesVFX.Play();
+        if (dustVFX != null) dustVFX.Stop();
+
         Invoke("ResetSpeed", 5f);
     }
 
     void ResetSpeed()
     {
         forwardSpeed = normalSpeed;
+
+        if (lightningVFX != null) lightningVFX.Stop();
+        if (speedLinesVFX != null) speedLinesVFX.Stop();
+        if (dustVFX != null && jumpCount == 0)
+        {
+            dustVFX.Play();
+        }
     }
 
     public void AddHealth(int amount)
