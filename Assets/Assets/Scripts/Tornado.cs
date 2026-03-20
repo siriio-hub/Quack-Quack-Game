@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Tornado : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 3f;
     public GameObject hitVFX;
     void Start()
     {
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 10f);
     }
 
     void Update()
@@ -28,7 +28,7 @@ public class Tornado : MonoBehaviour
                     Instantiate(hitVFX, transform.position, Quaternion.identity);
                 }
             }
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

@@ -14,12 +14,20 @@ public class ItemPickup : MonoBehaviour
     public ItemType itemType;
     public GameObject pickupVFX;
 
+    [Header("Audio Settings")]
+    public AudioClip pickupSound;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             PlayerController player = other.GetComponent<PlayerController>();
             if (player == null) return;
+
+            if (player.audioSource != null && pickupSound != null)
+            {
+                player.audioSource.PlayOneShot(pickupSound);
+            }
 
             if (GameManager.instance == null)
             {

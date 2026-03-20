@@ -128,3 +128,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemType: 4
   pickupVFX: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 1eeee0e167d53f74e998ceab09d99150, type: 3}

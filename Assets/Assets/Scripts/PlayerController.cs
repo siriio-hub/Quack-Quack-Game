@@ -41,7 +41,15 @@ public class PlayerController : MonoBehaviour
     private float hitCooldown = 0.5f;
     private float lastHitTime = -999f;
 
+    [Header("Death Audio")]
+    public AudioClip deathSound;
     private bool isDead = false;
+
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip jumpSound;
+    public AudioClip tornadoLaunchSound;
+    public AudioClip bubbleLaunchSound;
 
     void Start()
     {
@@ -72,9 +80,12 @@ public class PlayerController : MonoBehaviour
             if (dustVFX != null) dustVFX.Stop();
 
             playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0,
-                playerRb.linearVelocity.z
-            );
+                playerRb.linearVelocity.z);
 
+            if (audioSource != null && jumpSound != null)
+            {
+                audioSource.PlayOneShot(jumpSound);
+            }
             playerRb.AddForce(Vector3.up * jumpForce * 1.2f, ForceMode.Impulse);
             jumpCount++;
 
@@ -249,9 +260,12 @@ public class PlayerController : MonoBehaviour
         {
             if (target.playerID != this.playerID)
             {
-                Vector3 spawnPos = new Vector3(target.transform.position.x, 0.5f, target.transform.position.z + 2f);
+                Vector3 spawnPos = new Vector3(target.transform.position.x, 0f, target.transform.position.z + 20f);
                 if (tornadoPrefab != null)
                 {
+                    if (audioSource != null && tornadoLaunchSound != null)
+                        audioSource.PlayOneShot(tornadoLaunchSound);
+
                     Instantiate(tornadoPrefab, spawnPos, Quaternion.identity);
                     Debug.Log("Tornado Spawned at: " + spawnPos);
                 }
@@ -268,6 +282,9 @@ public class PlayerController : MonoBehaviour
         {
             if (target.playerID != this.playerID)
             {
+                if (audioSource != null && bubbleLaunchSound != null)
+                    audioSource.PlayOneShot(bubbleLaunchSound);
+
                 Instantiate(bubblePrefab, target.transform.position, Quaternion.identity, target.transform);
                 break;
             }
@@ -276,7 +293,13 @@ public class PlayerController : MonoBehaviour
 
         void Die()
     {
+        if (isDead) return;
         isDead = true;
+
+        if (audioSource != null && deathSound != null)
+        {
+            audioSource.PlayOneShot(deathSound);
+        }
 
         playerRb.linearVelocity = Vector3.zero;
         forwardSpeed = 0;
@@ -285,5 +308,6 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Die");
 
         //Invoke("GameOver", 2f);
+        GameObject.Find("BGM_Manager").GetComponent<AudioSource>().Stop();
     }
 }
