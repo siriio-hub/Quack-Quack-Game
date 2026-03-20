@@ -28,7 +28,7 @@ public class Tornado : MonoBehaviour
                     Instantiate(hitVFX, transform.position, Quaternion.identity);
                 }
             }
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }

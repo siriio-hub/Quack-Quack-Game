@@ -37,14 +37,14 @@ public class GameManager : MonoBehaviour
         if (displayP1 < scoreP1)
         {
             displayP1++;
-            scoreTextP1.text = "P1 Score : " + displayP1;
+            scoreTextP1.text = "Score : " + displayP1;
         }
 
         // Player 2 Score UI
         if (displayP2 < scoreP2)
         {
             displayP2++;
-            scoreTextP2.text = "P2 Score : " + displayP2;
+            scoreTextP2.text = "Score : " + displayP2;
         }
     }
 

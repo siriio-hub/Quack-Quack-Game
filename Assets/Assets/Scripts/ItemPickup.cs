@@ -31,7 +31,6 @@ public class ItemPickup : MonoBehaviour
 
             if (GameManager.instance == null)
             {
-                Debug.LogWarning("ลืมวาง GameManager ไว้ในฉากหรือเปล่า?");
                 return;
             }
 

@@ -307,7 +307,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Speed", 0);
         animator.SetTrigger("Die");
 
-        //Invoke("GameOver", 2f);
+        Invoke("GameOver", 2f);
         GameObject.Find("BGM_Manager").GetComponent<AudioSource>().Stop();
     }
 }
