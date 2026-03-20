@@ -10,7 +10,7 @@ public class EndlessRoad : MonoBehaviour
     public int segmentsOnScreen = 5;
     public float segmentLength = 30f;
 
-    private float spawnZ = 0;
+    private float spawnZ = 10;
     private List<GameObject> activeSegments = new List<GameObject>();
 
     void Start()
@@ -54,7 +54,7 @@ public class EndlessRoad : MonoBehaviour
 
         GameObject segment = Instantiate(
             segmentPrefabs[index],
-            new Vector3(0, 0, spawnZ),
+            new Vector3(0, 0, spawnZ + (segmentLength / 2)),
             Quaternion.identity
         );
 

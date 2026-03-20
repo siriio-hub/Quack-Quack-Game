@@ -8,7 +8,7 @@ public class StartTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(startRoad, 5f);
+            Destroy(startRoad, 10f);
         }
     }
 }
