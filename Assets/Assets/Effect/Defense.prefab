@@ -4904,7 +4904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7659093709922696517}
   m_Layer: 0
-  m_Name: ForceField
+  m_Name: Defense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6950301886651857330}
   - component: {fileID: 2364828126189327126}
   m_Layer: 0
-  m_Name: CircleHeart
+  m_Name: AuraCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.26981127, b: 0.66518205, a: 1}
+      maxColor: {r: 1, g: 0.96396226, b: 0.6396227, a: 0.8862745}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1369,16 +1369,16 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.096226394, b: 0.096226394, a: 0}
-        key1: {r: 1, g: 0.07843138, b: 0.5764706, a: 1}
-        key2: {r: 1, g: 0.07843138, b: 0.5764706, a: 1}
+        key0: {r: 1, g: 1, b: 1, a: 0}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 1, g: 1, b: 1, a: 1}
         key3: {r: 1, g: 1, b: 1, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 65535
+        ctime1: 6091
         ctime2: 65535
         ctime3: 65535
         ctime4: 0
@@ -1387,7 +1387,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 5474
-        atime2: 22436
+        atime2: 26445
         atime3: 65535
         atime4: 0
         atime5: 0
@@ -1395,7 +1395,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_ColorSpace: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 3
         m_NumAlphaKeys: 4
       minGradient:
         serializedVersion: 2

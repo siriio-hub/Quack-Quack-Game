@@ -20,6 +20,20 @@ public class GameManager : MonoBehaviour
     public int currentHealthP1;
     public int currentHealthP2;
 
+    [Header("Player Scores")]
+    public int player1Score = 0;
+    public int player2Score = 0;
+
+    [Header("Final Score")]
+    public static int finalP1Score;
+    public static int finalP2Score;
+
+    void Start()
+    {
+        player1Score = 0;
+        player2Score = 0;
+    }
+
     void Awake()
     {
         instance = this;
@@ -29,19 +43,22 @@ public class GameManager : MonoBehaviour
 
         UpdateHeartsUI(1);
         UpdateHeartsUI(2);
+
+        player1Score = 0;
+        player2Score = 0;
     }
 
     void Update()
     {
-        // Player 1 Score UI
-        if (displayP1 < scoreP1)
+        // Player 1 
+        if (displayP1 < player1Score)
         {
             displayP1++;
             scoreTextP1.text = "Score : " + displayP1;
         }
 
-        // Player 2 Score UI
-        if (displayP2 < scoreP2)
+        // Player 2 
+        if (displayP2 < player2Score)
         {
             displayP2++;
             scoreTextP2.text = "Score : " + displayP2;
@@ -50,14 +67,8 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int amount, int playerID)
     {
-        if (playerID == 1)
-        {
-            scoreP1 += amount;
-        }
-        else if (playerID == 2)
-        {
-            scoreP2 += amount;
-        }
+        if (playerID == 1) player1Score += amount;
+        else if (playerID == 2) player2Score += amount;
     }
 
     public void TakeDamage(int amount, int playerID)
@@ -110,5 +121,12 @@ public class GameManager : MonoBehaviour
     {
         if (playerID == 1) return currentHealthP1;
         else return currentHealthP2;
+    }
+
+    public void CheckGameOver(int loserID)
+    {
+        finalP1Score = player1Score;
+        finalP2Score = player2Score;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("EndGame");
     }
 }

@@ -310,4 +310,16 @@ public class PlayerController : MonoBehaviour
         Invoke("GameOver", 2f);
         GameObject.Find("BGM_Manager").GetComponent<AudioSource>().Stop();
     }
+    void GameOver()
+    {
+        // แจ้ง GameManager ว่าผู้เล่นไอดีนี้ตายแล้ว เพื่อให้ GameManager ตัดฉากไปหน้า EndGame
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.CheckGameOver(playerID);
+        }
+        else
+        {
+            Debug.LogError("GameManager?");
+        }
+    }
 }
