@@ -5,12 +5,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public int scoreP1 = 0;
-    public int scoreP2 = 0;
-
-    int displayP1 = 0;
-    int displayP2 = 0;
-
     public TextMeshProUGUI scoreTextP1;
     public TextMeshProUGUI scoreTextP2;
 
@@ -23,6 +17,9 @@ public class GameManager : MonoBehaviour
     [Header("Player Scores")]
     public int player1Score = 0;
     public int player2Score = 0;
+
+    private int displayP1 = 0;
+    private int displayP2 = 0;
 
     [Header("Final Score")]
     public static int finalP1Score;
